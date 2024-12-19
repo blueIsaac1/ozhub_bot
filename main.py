@@ -83,6 +83,17 @@ def update_html(bot_info):
 # Evento quando o bot está pronto
 @bot.event
 async def on_ready():
+    bot_info = {
+        'name': bot.user.name,
+        'id': str(bot.user.id),
+        'guild_count': len(bot.guilds),
+        'status': 'Online',
+        'last_update': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    }
+    
+    # Atualiza o arquivo HTML
+    update_html(bot_info)
+
     print(f'Bot está online!')
     print(f'Nome: {bot.user.name}')
     print(f'ID: {bot.user.id}')
