@@ -123,6 +123,17 @@ async def on_command_error(ctx, error):
     else:
         print(f'Erro: {error}')
 
+@bot.event
+async def on_guild_join(guild):
+    bot_info = {
+        'name': bot.user.name,
+        'id': str(bot.user.id),
+        'guild_count': len(bot.guilds),
+        'status': 'Online',
+        'last_update': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    }
+    update_html(bot_info)
+
 # Evento quando um membro entra no servidor
 @bot.event
 async def on_member_join(member):
